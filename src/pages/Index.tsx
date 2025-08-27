@@ -72,7 +72,7 @@ export default function Index() {
                 <p className="text-muted-foreground mb-8">
                   Próximo à Santa Casa, Largo do Arouche, Praça da República, Universidade Mackenzie 
                   e aos metrôs Higienópolis-Mackenzie e República. Aqui, você está no centro de tudo 
-                  o que acontece na cidade.
+                  o que acontece na cidade. <strong>Agende sua visita e conheça sua nova casa!</strong>
                 </p>
                 <Button 
                   onClick={() => scrollToSection('#plantas')}
@@ -92,15 +92,8 @@ export default function Index() {
                 </div>
                 <div className="absolute -bottom-6 -left-6 w-2/3 rounded-2xl overflow-hidden shadow-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=400&h=300&fit=crop"
-                    alt="Interior moderno" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -top-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop"
-                    alt="Vista da região" 
+                    src="/images/map.png"
+                    alt="Mapa da localização do empreendimento" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -242,10 +235,10 @@ export default function Index() {
           <div className="container">
             <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Entre em Contato
+                Fale com um Consultor
               </h2>
               <p className="text-muted-foreground mb-8">
-                Conheça mais sobre o Nurban Vila Buarque
+                Agende uma visita e garante seu apartamento no Nurban Vila Buarque
               </p>
               
               <div className="glass-card p-8 rounded-xl mb-8">
@@ -284,11 +277,18 @@ export default function Index() {
                 <p><strong>Realização e Incorporação:</strong> Vita Urbana</p>
               </div>
               
-              <Button asChild size="lg" className="btn-primary bg-secondary hover:bg-secondary/90 mt-8">
-                <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
-                  Acessar Site Oficial
-                </a>
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <Button asChild size="lg" className="min-w-[250px] rounded-full bg-nurban-pink hover:bg-nurban-pink-light text-white font-semibold">
+                  <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+                    Agende sua visita pelo WhatsApp
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="min-w-[200px] rounded-full border-secondary text-secondary hover:bg-secondary hover:text-white">
+                  <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
+                    Site Oficial
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
           

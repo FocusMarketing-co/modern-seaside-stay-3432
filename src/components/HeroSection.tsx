@@ -66,21 +66,21 @@ export default function HeroSection() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
-              onClick={() => scrollToSection('#sobre')}
+              asChild
               size="lg" 
-              className="min-w-[200px] rounded-full bg-nurban-blue hover:bg-nurban-blue-light text-white transform transition-all duration-300 hover:translate-y-[-2px]"
+              className="min-w-[200px] rounded-full bg-nurban-pink hover:bg-nurban-pink-light text-white transform transition-all duration-300 hover:translate-y-[-2px] font-semibold"
             >
-              Conheça o Projeto
+              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+                Agende sua visita pelo WhatsApp
+              </a>
             </Button>
             <Button 
-              asChild
+              onClick={() => scrollToSection('#sobre')}
               variant="outline" 
               size="lg" 
               className="min-w-[200px] rounded-full border-white text-white hover:bg-white hover:text-nurban-blue transform transition-all duration-300 hover:translate-y-[-2px]"
             >
-              <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
-                Site Oficial
-              </a>
+              Conheça o Projeto
             </Button>
           </div>
         </div>
