@@ -56,7 +56,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center space-x-2">
           <ThemeToggle />
-          <Button asChild className="btn-primary bg-secondary hover:bg-secondary/90">
+          <Button asChild className="rounded-full bg-nurban-pink hover:bg-nurban-pink-light text-white font-semibold px-6">
             <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
               Site Oficial
             </a>
@@ -94,7 +94,7 @@ export default function Navbar() {
               </ul>
             </div>
             
-            <Button asChild className="w-full btn-primary bg-secondary hover:bg-secondary/90 mt-6">
+            <Button asChild className="w-full rounded-full bg-nurban-pink hover:bg-nurban-pink-light text-white font-semibold mt-6">
               <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                 Site Oficial
               </a>
