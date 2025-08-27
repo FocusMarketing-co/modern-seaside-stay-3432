@@ -1,13 +1,9 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function HeroSection() {
-  const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   
   useEffect(() => {
@@ -20,45 +16,71 @@ export default function HeroSection() {
   }, []);
   
   // Calculate parallax effect
-  const backgroundY = scrollY * 0.5;
-  const contentY = scrollY * 0.2;
+  const backgroundY = scrollY * 0.3;
+  const contentY = scrollY * 0.1;
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section id="home" className="relative h-screen overflow-hidden">
       {/* Background image with parallax */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1615571022219-eb45cf7faa9d?q=80&w=1920&auto=format&fit=crop')",
+          backgroundImage: "url('/images/entrance.png')",
           transform: `translateY(${backgroundY}px)`,
           backgroundPosition: `center ${50 + scrollY * 0.05}%`
         }}
       />
       
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
       
       {/* Content */}
       <div
         className="relative h-full flex flex-col justify-center items-center text-center px-4"
         style={{ transform: `translateY(${contentY}px)` }}
       >
-        <div className="max-w-3xl animate-fade-in">
-          <span className="inline-block text-white/90 text-lg mb-4 tracking-wide border-b border-white/30 pb-2">
-            {t.hero.subtitle}
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            {t.hero.title}
-          </h1>
+        <div className="max-w-4xl animate-fade-in">
+          <div className="mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+              Nurban
+            </h1>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/90 mb-2">
+              Vila Buarque
+            </h2>
+            <p className="text-xl md:text-2xl text-nurban-pink font-semibold">
+              #AondeTudoAcontece
+            </p>
+          </div>
+          
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            {t.hero.description}
+            Condomínio de apartamentos compactos no coração da Vila Buarque. 
+            Localização privilegiada próxima aos principais pontos de São Paulo.
           </p>
+          
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" variant="heroSolid" className="min-w-[200px] rounded-full transform transition-all duration-300 hover:translate-y-[-2px]">
-              <Link to="/booking">{t.hero.bookStay}</Link>
+            <Button 
+              onClick={() => scrollToSection('#sobre')}
+              size="lg" 
+              className="min-w-[200px] rounded-full bg-nurban-blue hover:bg-nurban-blue-light text-white transform transition-all duration-300 hover:translate-y-[-2px]"
+            >
+              Conheça o Projeto
             </Button>
-            <Button asChild variant="hero" size="lg" className="min-w-[200px] rounded-full transform transition-all duration-300 hover:translate-y-[-2px]">
-              <Link to="/apartments">{t.hero.exploreApartments}</Link>
+            <Button 
+              asChild
+              variant="outline" 
+              size="lg" 
+              className="min-w-[200px] rounded-full border-white text-white hover:bg-white hover:text-nurban-blue transform transition-all duration-300 hover:translate-y-[-2px]"
+            >
+              <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
+                Site Oficial
+              </a>
             </Button>
           </div>
         </div>
@@ -66,13 +88,13 @@ export default function HeroSection() {
       
       {/* Scroll down indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <a 
-          href="#welcome" 
+        <button 
+          onClick={() => scrollToSection('#sobre')}
           className="flex flex-col items-center opacity-70 hover:opacity-100 transition-opacity"
         >
-          <span className="text-sm mb-2">{t.hero.scrollDown}</span>
+          <span className="text-sm mb-2">Descobrir mais</span>
           <ChevronDown className="h-6 w-6" />
-        </a>
+        </button>
       </div>
       
       {/* Animated wave */}

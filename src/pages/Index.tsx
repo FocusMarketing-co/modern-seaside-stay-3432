@@ -2,90 +2,47 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import BookingForm from "@/components/BookingForm";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ApartmentCard, { ApartmentProps } from "@/components/ApartmentCard";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { ArrowRight, Wifi, Utensils, Waves, LifeBuoy, MapPin, Coffee } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-
-// Sample apartments data
-const featuredApartments: ApartmentProps[] = [
-  {
-    id: "1",
-    name: "Deluxe Sea View Suite",
-    description: "Luxurious suite with panoramic sea views, modern amenities, and a private balcony.",
-    price: 180,
-    capacity: 2,
-    size: 45,
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
-    location: "Beachfront",
-    features: ["Wi-Fi", "Kitchen", "Bathroom", "Air Conditioning", "TV", "Balcony"]
-  },
-  {
-    id: "2",
-    name: "Premium Family Apartment",
-    description: "Spacious apartment ideal for families, with full kitchen and stunning coastal views.",
-    price: 250,
-    capacity: 4,
-    size: 75,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-    location: "Second row",
-    features: ["Wi-Fi", "Kitchen", "Bathroom", "Air Conditioning", "TV", "Washing Machine"]
-  },
-  {
-    id: "3",
-    name: "Executive Beach Studio",
-    description: "Elegant studio with direct beach access, modern design, and premium finishes.",
-    price: 150,
-    capacity: 2,
-    size: 35,
-    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&h=600&fit=crop",
-    location: "Beachfront",
-    features: ["Wi-Fi", "Kitchenette", "Bathroom", "Air Conditioning", "TV"]
-  }
-];
+import { Building2, MapPin, Flame, ShoppingCart, Dumbbell, ChefHat, ExternalLink } from "lucide-react";
 
 export default function Index() {
-  const { t } = useLanguage();
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
   
-  // Feature items
-  const features = [
+  // Amenidades
+  const amenidades = [
     {
-      icon: <Waves className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.beachfront.title,
-      description: t.home.amenities.features.beachfront.description
+      icon: <ShoppingCart className="h-8 w-8 text-primary" />,
+      title: "Mini Mercado",
+      description: "Produtos e conveniências sem sair de casa.",
+      image: "/images/mini_mercado.png"
     },
     {
-      icon: <LifeBuoy className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.pools.title,
-      description: t.home.amenities.features.pools.description
+      icon: <Dumbbell className="h-8 w-8 text-primary" />,
+      title: "Academia",
+      description: "Espaço completo para manter a forma.",
+      image: "/images/academia.png"
     },
     {
-      icon: <Utensils className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.restaurant.title,
-      description: t.home.amenities.features.restaurant.description
+      icon: <ChefHat className="h-8 w-8 text-primary" />,
+      title: "Churrasqueira",
+      description: "Terraço com área para churrascos e lazer ao ar livre.",
+      image: "/images/churrasqueira.png"
     },
     {
-      icon: <Wifi className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.wifi.title,
-      description: t.home.amenities.features.wifi.description
-    },
-    {
-      icon: <Coffee className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.bar.title,
-      description: t.home.amenities.features.bar.description
-    },
-    {
-      icon: <MapPin className="h-8 w-8 text-primary" />,
-      title: t.home.amenities.features.location.title,
-      description: t.home.amenities.features.location.description
+      icon: <Flame className="h-8 w-8 text-primary" />,
+      title: "Espaço Lareira",
+      description: "Ambiente acolhedor para relaxar e reunir amigos.",
+      image: "/images/entrance.png"
     }
   ];
   
@@ -97,49 +54,53 @@ export default function Index() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Welcome Section */}
-        <section id="welcome" className="section">
+        {/* Sobre Section */}
+        <section id="sobre" className="section">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in [animation-delay:100ms]">
-                <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                  {t.home.welcome.subtitle}
+                <span className="text-sm text-secondary font-medium uppercase tracking-wider">
+                  Vila Buarque
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-                  {t.home.welcome.title}
+                  Localização Privilegiada
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  {t.home.welcome.description1}
+                  O Nurban Vila Buarque está localizado na Rua Dr. Cesário Mota Júnior, 542, 
+                  no coração do bairro Vila Buarque, uma das regiões mais valorizadas de São Paulo.
                 </p>
                 <p className="text-muted-foreground mb-8">
-                  {t.home.welcome.description2}
+                  Próximo à Santa Casa, Largo do Arouche, Praça da República, Universidade Mackenzie 
+                  e aos metrôs Higienópolis-Mackenzie e República. Aqui, você está no centro de tudo 
+                  o que acontece na cidade.
                 </p>
-                <Button asChild className="btn-primary">
-                  <Link to="/about">
-                    {t.home.welcome.learnMore} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                <Button 
+                  onClick={() => scrollToSection('#plantas')}
+                  className="btn-primary bg-secondary hover:bg-secondary/90"
+                >
+                  Conheça as Plantas <Building2 className="ml-2 h-4 w-4" />
                 </Button>
               </div>
               
               <div className="relative animate-fade-in [animation-delay:300ms]">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop"
-                    alt="Seaside view" 
+                    src="/images/entrance.png"
+                    alt="Fachada do Nurban Vila Buarque" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 w-2/3 rounded-2xl overflow-hidden shadow-xl">
                   <img 
                     src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=400&h=300&fit=crop"
-                    alt="Luxury apartment interior" 
+                    alt="Interior moderno" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute -top-6 -right-6 w-1/2 rounded-2xl overflow-hidden shadow-xl">
                   <img 
                     src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop"
-                    alt="Pool view" 
+                    alt="Vista da região" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -148,124 +109,185 @@ export default function Index() {
           </div>
         </section>
         
-        {/* Booking Form Section */}
-        <section className="relative py-20 bg-gradient-to-r from-sea-light to-white dark:from-sea-dark dark:to-background overflow-hidden">
-          <div className="container relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="animate-fade-in">
-                <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                  {t.home.booking.subtitle}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-                  {t.home.booking.title}
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  {t.home.booking.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {t.home.booking.benefits.map((item, index) => (
-                    <li key={index} className="flex items-center">
-                      <div className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-3">
-                        <ArrowRight className="h-3 w-3" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+        {/* Plantas Section */}
+        <section id="plantas" className="section bg-card">
+          <div className="container">
+            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
+              <span className="text-sm text-secondary font-medium uppercase tracking-wider">
+                Plantas dos Pavimentos
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+                Conheça os Espaços
+              </h2>
+              <p className="text-muted-foreground">
+                Explore a distribuição inteligente dos ambientes do Nurban Vila Buarque
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Pavimento Térreo */}
+              <div className="animate-fade-in [animation-delay:100ms]">
+                <div className="glass-card p-6 rounded-xl">
+                  <h3 className="text-2xl font-bold mb-4 text-center">Pavimento Térreo</h3>
+                  <div className="aspect-video rounded-lg overflow-hidden mb-6">
+                    <img 
+                      src="/images/pavimento_terreo.png"
+                      alt="Planta do Pavimento Térreo" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Acesso e lockers
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Hall de entrada
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Terraço
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Espaço lareira
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Mini mercado
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Lavanderia
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Academia
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Bicicletário
+                    </div>
+                    <div className="flex items-center col-span-2">
+                      <span className="w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      Lojas comerciais
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              <BookingForm />
-            </div>
-          </div>
-          
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-            <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-primary/50 blur-3xl" />
-            <div className="absolute bottom-10 right-40 w-48 h-48 rounded-full bg-sea-light blur-3xl" />
-          </div>
-        </section>
-        
-        {/* Featured Apartments */}
-        <section className="section">
-          <div className="container">
-            <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-              <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                {t.home.featuredApartments.subtitle}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                {t.home.featuredApartments.title}
-              </h2>
-              <p className="text-muted-foreground">
-                {t.home.featuredApartments.description}
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredApartments.map((apartment, index) => (
-                <div key={apartment.id} className="animate-fade-in" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
-                  <ApartmentCard apartment={apartment} />
+              {/* 1º Pavimento */}
+              <div className="animate-fade-in [animation-delay:200ms]">
+                <div className="glass-card p-6 rounded-xl">
+                  <h3 className="text-2xl font-bold mb-4 text-center">1º Pavimento</h3>
+                  <div className="aspect-video rounded-lg overflow-hidden mb-6">
+                    <img 
+                      src="/images/pavimento_primeiro.png"
+                      alt="Planta do 1º Pavimento" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-muted-foreground text-center">
+                    Jirau das lojas comerciais 1 e 2
+                  </p>
                 </div>
-              ))}
-            </div>
-            
-            <div className="text-center mt-12">
-              <Button asChild className="btn-primary">
-                <Link to="/apartments">
-                  {t.home.featuredApartments.viewAll} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              </div>
             </div>
           </div>
         </section>
         
-        {/* Testimonials Section */}
-        <TestimonialsSection />
-        
-        {/* Features Section */}
-        <section className="section bg-card">
+        {/* Amenidades Section */}
+        <section id="amenidades" className="section">
           <div className="container">
             <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-              <span className="text-sm text-primary font-medium uppercase tracking-wider">
-                {t.home.amenities.subtitle}
+              <span className="text-sm text-secondary font-medium uppercase tracking-wider">
+                Comodidades
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                {t.home.amenities.title}
+                Amenidades Exclusivas
               </h2>
               <p className="text-muted-foreground">
-                {t.home.amenities.description}
+                Desfrute de espaços pensados para seu conforto e bem-estar
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {amenidades.map((amenidade, index) => (
                 <div 
                   key={index} 
                   className="glass-card p-6 rounded-xl animate-fade-in flex flex-col items-center text-center"
                   style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 >
-                  <div className="mb-4 p-3 rounded-full bg-primary/10">
-                    {feature.icon}
+                  <div className="aspect-square w-full rounded-lg overflow-hidden mb-4">
+                    <img 
+                      src={amenidade.image}
+                      alt={amenidade.title} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <div className="mb-4 p-3 rounded-full bg-primary/10">
+                    {amenidade.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{amenidade.title}</h3>
+                  <p className="text-muted-foreground">{amenidade.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
         
-        {/* CTA Section */}
-        <section className="relative py-24 bg-primary/5">
+        {/* Contato Section */}
+        <section id="contato" className="relative py-24 bg-primary/5">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center animate-fade-in">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {t.home.cta.title}
+                Entre em Contato
               </h2>
               <p className="text-muted-foreground mb-8">
-                {t.home.cta.description}
+                Conheça mais sobre o Nurban Vila Buarque
               </p>
-              <Button asChild size="lg" className="btn-primary">
-                <Link to="/booking">{t.home.cta.bookNow}</Link>
+              
+              <div className="glass-card p-8 rounded-xl mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 flex items-center">
+                      <MapPin className="h-5 w-5 mr-2 text-secondary" />
+                      Endereço
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Rua Dr. Cesário Mota Júnior, 542<br />
+                      Vila Buarque, São Paulo/SP
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 flex items-center">
+                      <ExternalLink className="h-5 w-5 mr-2 text-secondary" />
+                      Site Oficial
+                    </h3>
+                    <a 
+                      href="https://nurbanvilabuarque.com.br" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-secondary hover:underline"
+                    >
+                      nurbanvilabuarque.com.br
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-sm text-muted-foreground space-y-2">
+                <p><strong>Vendas:</strong> Vita Vendas</p>
+                <p><strong>Construção:</strong> RMR Engenharia</p>
+                <p><strong>Realização e Incorporação:</strong> Vita Urbana</p>
+              </div>
+              
+              <Button asChild size="lg" className="btn-primary bg-secondary hover:bg-secondary/90 mt-8">
+                <a href="https://nurbanvilabuarque.com.br" target="_blank" rel="noopener noreferrer">
+                  Acessar Site Oficial
+                </a>
               </Button>
             </div>
           </div>

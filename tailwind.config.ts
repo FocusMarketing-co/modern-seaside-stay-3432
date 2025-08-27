@@ -53,15 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sea: {
-					light: '#E0F2F7',
-					DEFAULT: '#1E88E5',
-					dark: '#0D47A1'
-				},
-				sand: {
-					light: '#F5F5DC',
-					DEFAULT: '#E6D2B5',
-					dark: '#D2B48C'
+				nurban: {
+					blue: '#0f6f8b',
+					'blue-light': '#1a8aa8',
+					pink: '#e23a72',
+					'pink-light': '#e85a8a'
 				}
 			},
 			borderRadius: {
